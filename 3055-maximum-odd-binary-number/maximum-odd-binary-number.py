@@ -1,11 +1,18 @@
 class Solution:
     def maximumOddBinaryNumber(self, s: str) -> str:
-        ones = s.count('1')
-        zeros = s.count('0')
-        
-        if ones == 0:
-            return ""  
-        return '1' * (ones - 1) + '0' * zeros + '1'
+        binary_list = list(s)
+        binary_list.sort(reverse=True)
 
+        if '1' not in binary_list:
+            return ""
         
+        if binary_list[-1] == '1':
+            return ''.join(binary_list)
+
+        for i in range(len(binary_list)):
+            if binary_list[i] == '1':
+                binary_list.pop(i)
+                break 
+        binary_list.append('1')
+        return ''.join(binary_list)
         
