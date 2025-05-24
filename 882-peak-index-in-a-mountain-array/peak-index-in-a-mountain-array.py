@@ -1,6 +1,14 @@
 class Solution:
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
-        max_num = max(arr)
-        for i,ch in enumerate(arr):
-            if ch == max_num:
-                return i
+        left = 0
+        right = len(arr) - 1
+
+        while left < right:
+            mid = (left + right) // 2
+
+            if arr[mid] < arr[mid + 1]:
+                left = mid + 1
+            else:
+                right = mid
+
+        return left 
